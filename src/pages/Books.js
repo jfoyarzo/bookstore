@@ -1,5 +1,6 @@
 import React from 'react';
-import Book from './Book';
+import Book from '../components/Book';
+import Form from '../components/Form';
 
 const Books = () => (
   <div className="component-container" style={{ padding: '1em 3em' }}>
@@ -11,6 +12,7 @@ const Books = () => (
     >
       <Book title="The Hunger Games" author="Suzanne Collins" />
     </div>
+    <Form />
   </div>
 );
 
