@@ -5,7 +5,7 @@ const addBook = (payload) => ({ type: BOOK_ADDED, payload });
 
 const removeBook = (id) => ({ type: BOOK_REMOVED, payload: id });
 
-const reducer = (state = [], action) => {
+const reducer = (state = [{ title: 'The Hunger Games', author: 'Suzanne Collins', id: '1' }, { title: 'Naked Lunch', author: 'William S. Burroughs', id: '2' }], action) => {
   switch (action.type) {
     case BOOK_ADDED: {
       const { name, author, id } = action.payload;
