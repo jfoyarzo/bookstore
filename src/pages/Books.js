@@ -10,7 +10,7 @@ const Books = () => (
         width: '60vw', height: '60vh', border: '1px solid black', padding: '1.5em',
       }}
     >
-      <Book title="The Hunger Games" author="Suzanne Collins" />
+      <Book title="The Hunger Games" author="Suzanne Collins" id="1" />
     </div>
     <Form />
   </div>
