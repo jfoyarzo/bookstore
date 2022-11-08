@@ -1,7 +1,7 @@
 const BOOK_ADDED = 'bookstore/books/BOOK_ADDED';
 const BOOK_REMOVED = 'bookstore/books/BOOK_REMOVED';
 
-const addBook = (name, author, id) => ({ type: BOOK_ADDED, payload: { name, author, id } });
+const addBook = (payload) => ({ type: BOOK_ADDED, payload });
 
 const removeBook = (id) => ({ type: BOOK_REMOVED, payload: id });
 
@@ -13,8 +13,7 @@ const reducer = (state = [], action) => {
     }
     case BOOK_REMOVED: {
       const { id } = action.payload;
-      const filteredArray = state.filter((book) => book.id !== id);
-      return filteredArray;
+      return [...state.filter((book) => book.id !== id)];
     }
     default:
       return state;
