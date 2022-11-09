@@ -8,8 +8,8 @@ const removeBook = (id) => ({ type: BOOK_REMOVED, payload: id });
 const reducer = (state = [{ title: 'The Hunger Games', author: 'Suzanne Collins', id: '1' }, { title: 'Naked Lunch', author: 'William S. Burroughs', id: '2' }], action) => {
   switch (action.type) {
     case BOOK_ADDED: {
-      const { name, author, id } = action.payload;
-      return [...state, { name, author, id }];
+      const { title, author, id } = action.payload;
+      return [...state, { title, author, id }];
     }
     case BOOK_REMOVED: {
       const { id } = action.payload;
