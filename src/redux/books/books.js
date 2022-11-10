@@ -1,24 +1,20 @@
-const BOOK_ADDED = 'bookstore/books/BOOK_ADDED';
-const BOOK_REMOVED = 'bookstore/books/BOOK_REMOVED';
+import { createSlice } from '@reduxjs/toolkit';
 
-const addBook = (payload) => ({ type: BOOK_ADDED, payload });
+const initialState = [
+  { title: 'The Hunger Games', author: 'Suzanne Collins', id: '1' }, { title: 'Naked Lunch', author: 'William S. Burroughs', id: '2' },
+];
 
-const removeBook = (id) => ({ type: BOOK_REMOVED, payload: { id } });
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  reducers: {
+    addBook: (state, action) => [...state, action.payload],
+    removeBook: (state, action) => {
+      const itemId = action.payload;
+      return [...state.filter((book) => book.id !== itemId)];
+    },
+  },
+});
 
-const reducer = (state = [{ title: 'The Hunger Games', author: 'Suzanne Collins', id: '1' }, { title: 'Naked Lunch', author: 'William S. Burroughs', id: '2' }], action) => {
-  switch (action.type) {
-    case BOOK_ADDED: {
-      const { title, author, id } = action.payload;
-      return [...state, { title, author, id }];
-    }
-    case BOOK_REMOVED: {
-      const { id } = action.payload;
-      return [...state.filter((book) => book.id !== id)];
-    }
-    default:
-      return state;
-  }
-};
-
-export default reducer;
-export { addBook, removeBook };
+export default booksSlice.reducer;
+export const { addBook, removeBook } = booksSlice.actions;
