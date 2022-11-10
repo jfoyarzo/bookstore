@@ -29,8 +29,8 @@ const booksSlice = createSlice({
     [getBooks.fulfilled]: (state, action) => {
       const books = [...state, action.payload];
       return books;
-    } 
-  }
+    },
+  },
 });
 
 export default booksSlice.reducer;
