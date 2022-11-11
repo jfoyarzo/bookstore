@@ -1,24 +1,51 @@
-const BOOK_ADDED = 'bookstore/books/BOOK_ADDED';
-const BOOK_REMOVED = 'bookstore/books/BOOK_REMOVED';
+/* eslint-disable no-param-reassign */
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import arrayTransform from '../../utils/convertToArray';
 
-const addBook = (payload) => ({ type: BOOK_ADDED, payload });
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/Qo8LZ6Txlu6FMjkuPrCj/books/';
 
-const removeBook = (id) => ({ type: BOOK_REMOVED, payload: { id } });
+const initialState = [];
 
-const reducer = (state = [{ title: 'The Hunger Games', author: 'Suzanne Collins', id: '1' }, { title: 'Naked Lunch', author: 'William S. Burroughs', id: '2' }], action) => {
-  switch (action.type) {
-    case BOOK_ADDED: {
-      const { title, author, id } = action.payload;
-      return [...state, { title, author, id }];
-    }
-    case BOOK_REMOVED: {
-      const { id } = action.payload;
-      return [...state.filter((book) => book.id !== id)];
-    }
-    default:
-      return state;
-  }
-};
+export const getBooks = createAsyncThunk(
+  'books/getBooks',
+  async () => {
+    const response = await axios(url);
+    return response.data;
+  },
+);
 
-export default reducer;
-export { addBook, removeBook };
+export const addBook = createAsyncThunk(
+  'books/addBook',
+  async (payload) => {
+    const response = await axios.post(url, payload);
+    return response.data;
+  },
+);
+
+export const removeBook = createAsyncThunk(
+  'books/removeBook',
+  async (id) => {
+    const response = await axios.delete(`${url}${id}`);
+    return response.data;
+  },
+);
+
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  extraReducers: {
+    [getBooks.fulfilled]: (state, action) => {
+      const object = action.payload;
+      const bookArray = arrayTransform(object);
+      return [...bookArray];
+    },
+    [addBook.fulfilled]: (state, action) => [...state, action.meta.arg],
+    [removeBook.fulfilled]: (state, action) => {
+      const itemId = action.meta.arg;
+      return [...state.filter((book) => book.item_id !== itemId)];
+    },
+  },
+});
+
+export default booksSlice.reducer;
