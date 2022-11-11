@@ -1,11 +1,11 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import arrayTransform from '../../utils/convertToArray';
 
-const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/Qo8LZ6Txlu6FMjkuPrCj/';
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/Qo8LZ6Txlu6FMjkuPrCj/books/';
 
-const initialState = [
-  { title: 'The Hunger Games', author: 'Suzanne Collins', id: '1' }, { title: 'Naked Lunch', author: 'William S. Burroughs', id: '2' },
-];
+const initialState = [];
 
 export const getBooks = createAsyncThunk(
   'books/getBooks',
@@ -15,23 +15,37 @@ export const getBooks = createAsyncThunk(
   },
 );
 
+export const addBook = createAsyncThunk(
+  'books/addBook',
+  async (payload) => {
+    const response = await axios.post(url, payload);
+    return response.data;
+  },
+);
+
+export const removeBook = createAsyncThunk(
+  'books/removeBook',
+  async (id) => {
+    const response = await axios.delete(`${url}${id}`);
+    return response.data;
+  },
+);
+
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-    addBook: (state, action) => [...state, action.payload],
-    removeBook: (state, action) => {
-      const itemId = action.payload;
-      return [...state.filter((book) => book.id !== itemId)];
-    },
-  },
   extraReducers: {
     [getBooks.fulfilled]: (state, action) => {
-      const books = [...state, action.payload];
-      return books;
+      const object = action.payload;
+      const bookArray = arrayTransform(object);
+      return [...bookArray];
+    },
+    [addBook.fulfilled]: (state, action) => [...state, action.meta.arg],
+    [removeBook.fulfilled]: (state, action) => {
+      const itemId = action.meta.arg;
+      return [...state.filter((book) => book.item_id !== itemId)];
     },
   },
 });
 
 export default booksSlice.reducer;
-export const { addBook, removeBook } = booksSlice.actions;
