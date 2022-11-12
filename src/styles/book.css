@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto+Slab:wght@200;300;400;700&display=swap');
+
+.book-wrapper {
+  background-color: white;
+  border-radius: 4px;
+  border: solid 1px #e8e8e8;
+  font-family: 'Roboto Slab', serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2em;
+  height: 10rem;
+  margin-bottom: 2rem;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.vertical-line {
+  width: 0.125rem;
+  height: 4.375rem;
+  margin-right: 5rem;
+  border: solid 1px #e8e8e8;
+}
+
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.progress-control {
+  margin-right: 3em;
+}
+
+.book-control {
+  margin-top: 1em;
+}
+
+.current {
+  font-size: 0.813rem;
+  font-weight: 300;
+  color: #adacac;
+  margin-bottom: 0.5em;
+}
+
+.chapter {
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 1em;
+}
+
+.progress-wrapper span {
+  margin-left: 2em;
+  font-family: 'Montserrat', serif;
+  color: #adacac;
+}
+
+.book-control button {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #4386bf;
+}
+
+.book-control span {
+  color: #4386bf;
+}
+
+.button-wrapper button {
+  cursor: pointer;
+  width: 11rem;
+  height: 2rem;
+  padding: 0.438rem 1.188rem 0.5rem 1.375rem;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  font-weight: 200;
+  font-size: 0.9em;
+  background-color: #0290ff;
+  font-family: 'Roboto Slab', serif;
+}
+
+.button-wrapper button:hover {
+  background-color: #0581e0;
+}
+
+.button-wrapper button:active {
+  background-color: #0290ff;
+}
+
+.text-wrapper h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.875rem;
+  font-weight: bold;
+  opacity: 0.6;
+  width: 15vw;
+}
+
+.text-wrapper h2 {
+  font-size: 1.375rem;
+  font-weight: bold;
+}
+
+.text-wrapper p {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #4386bf;
+}
+
+.progress-wrapper span p {
+  color: black;
+  font-size: 2em;
+}

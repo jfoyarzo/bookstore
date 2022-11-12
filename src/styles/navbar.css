@@ -1,0 +1,54 @@
+.navBar {
+  display: flex;
+  align-items: baseline;
+  background-color: white;
+  padding: 2rem 5rem;
+}
+
+.link-wrapper {
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+}
+
+.nav-li {
+  margin-left: 1.5em;
+  width: 3.688rem;
+}
+
+.nav-li .active-link {
+  opacity: 1;
+}
+
+.navBar > svg {
+  font-size: 3rem;
+  align-self: center;
+  margin-left: auto;
+}
+
+.navBar h1 {
+  color: #0290ff;
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
+.nav-li a {
+  opacity: 0.5;
+  text-decoration: none;
+  font-size: 0.813rem;
+  letter-spacing: 1.9px;
+  font-weight: normal;
+}
+
+.nav-li a:hover {
+  opacity: 1;
+}
+
+.nav-li a:active {
+  opacity: 1;
+}
+
+.nav-li a:visited {
+  color: black;
+}

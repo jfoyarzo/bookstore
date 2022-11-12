@@ -1,13 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { TbUserCircle } from 'react-icons/tb';
+import '../styles/navbar.css';
 
 const Navbar = () => (
-  <nav className="navBar" style={{ display: 'flex', alignItems: 'baseline', padding: '1.5em 3em' }}>
+  <nav className="navBar">
     <h1>Bookstore CMS</h1>
-    <ul className="link-wrapper" style={{ listStyle: 'none', display: 'flex', alignItems: 'baseline' }}>
-      <li className="nav-li" style={{ marginLeft: '1em' }}><NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : 'none')}>Books</NavLink></li>
-      <li className="nav-li" style={{ marginLeft: '1em' }}><NavLink to="categories" className={({ isActive }) => (isActive ? 'active-link' : 'none')}>Categories</NavLink></li>
+    <ul className="link-wrapper">
+      <li className="nav-li"><NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : 'none')}>BOOKS</NavLink></li>
+      <li className="nav-li"><NavLink to="categories" className={({ isActive }) => (isActive ? 'active-link' : 'none')}>CATEGORIES</NavLink></li>
     </ul>
+    <TbUserCircle />
   </nav>
 
 );

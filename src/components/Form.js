@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addBook } from '../redux/books/books';
+import '../styles/form.css';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -17,20 +18,18 @@ const Form = () => {
   };
 
   return (
-    <form style={{ marginTop: '1.5em' }} onSubmit={handleSubmit}>
-      <h2>Add new Book</h2>
-      <div className="input-wrapper" style={{ display: 'flex' }}>
+    <form className="form" onSubmit={handleSubmit}>
+      <h2>ADD NEW BOOK</h2>
+      <div className="input-wrapper">
         <input type="text" id="title" name="title" placeholder="Book Title" />
         <input type="text" id="author" name="author" placeholder="Author" />
-        <label htmlFor="category">
-          Category:
-          <select name="category" id="category">
-            <option value="Fiction">Fiction</option>
-            <option value="Biography">Biography</option>
-            <option value="Historic">Historic</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
+        <select name="category" id="category">
+          <option default selected disabled hidden>Choose a Category</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Biography">Biography</option>
+          <option value="Historic">Historic</option>
+          <option value="Other">Other</option>
+        </select>
         <button type="submit">Add Book</button>
       </div>
     </form>
