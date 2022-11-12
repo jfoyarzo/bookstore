@@ -27,6 +27,7 @@
 }
 
 .button-wrapper button {
+  cursor: pointer;
   width: 11rem;
   height: 3rem;
   padding: 0.438rem 1.188rem 0.5rem 1.375rem;
@@ -37,6 +38,14 @@
   font-size: 1rem;
   background-color: #0290ff;
   font-family: 'Roboto Slab', serif;
+}
+
+.button-wrapper button:hover {
+  background-color: #0581e0;
+}
+
+.button-wrapper button:active {
+  background-color: #0290ff;
 }
 
 .text-wrapper h3 {
